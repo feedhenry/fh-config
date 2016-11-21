@@ -7,7 +7,7 @@
     "test": "grunt test",
     "version": "sed -i.bak \"s/sonar.projectVersion=.*/sonar.projectVersion=${npm_package_version}/\" sonar-project.properties && rm sonar-project.properties.bak && git add sonar-project.properties"
   },
-  "author": "",
+  "author": "Feedhenry",
   "dependencies": {
     "async": "^0.9.0",
     "bunyan": "^1.1.3",
