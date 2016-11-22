@@ -43,6 +43,30 @@ exports.test_init_with_error = function(cb) {
   });
 };
 
+exports.test_init_with_watch = function(cb) {
+  config.init(confFilePath, true, function(err, fhconfig) {
+    assert.ok(!err);
+    assert.ok(config.getWatcher());
+    cb();
+  });
+};
+
+exports.test_init_without_watch = function(cb) {
+  config.init(confFilePath, false, function(err, fhconfig) {
+    assert.ok(!err);
+    assert.ok(!config.getWatcher());
+    cb();
+  });
+};
+
+exports.test_init_validate_and_watch = function(cb) {
+  config.init(confFilePath, required, true, function(err, fhconfig) {
+    assert.ok(!err);
+    assert.ok(config.getWatcher());
+    cb();
+  });
+};
+
 exports.test_get_config = function(cb) {
   config.init(confFilePath, function(err) {
     assert.ok(!err, util.inspect(err));
