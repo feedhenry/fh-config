@@ -81,8 +81,21 @@ exports.test_get_config = function(cb) {
 exports.test_reload = function(cb) {
   config.init(confFilePath, function(err) {
     assert.ok(!err);
-    config.reload([], function(err) {
+
+    var fhconfig = config.getConfig();
+    var newTestValue = 'new value';
+    var oldTestValue = fhconfig.rawConfig.settings.test;
+    fhconfig.rawConfig.settings.test = newTestValue;
+
+    config.reloadRawConfig(function(err, newConfig) {
       assert.ok(!err);
+
+      assert.ok(fhconfig.rawConfig.settings.test !== newTestValue);
+      assert.ok(fhconfig.rawConfig.settings.test === oldTestValue);
+
+      assert.ok(fhconfig.value('settings.test') !== newTestValue);
+      assert.ok(fhconfig.value('settings.test') === oldTestValue);
+
       cb();
     });
   });
