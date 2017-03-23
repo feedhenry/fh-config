@@ -299,6 +299,6 @@ use the following convention (value embedded in "$()" to ensure its unique, wher
     "subB" : "$(exec.dig mongodb-service +search +short)" // this will assign the dns lookup array list to subB
 }
 ```
-##License
+## License
 
 fh-config is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/).
